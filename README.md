@@ -136,7 +136,7 @@ The following table represents the count of duplicates found in the dataset usin
 
 ***Date extraction***
 
-The SaleDate data was originally stored in a DateTime format, including both date and time information. However, I only required the date part for analysis. To achieve this, I used the CONVERT function to extract only the date part of the SaleDate data, resulting in the SaleDateConverted column with date values.
+The SaleDate data was originally stored in a DateTime format, including both date and time information. However, I will only require the date part for analysis. To achieve this, I used the CONVERT function to extract only the date part of the SaleDate data, resulting in the SaleDateConverted column with date values.
 
 ```
 Select SaleDate, CONVERT(Date, SaleDate) as SaleDateConverted
@@ -229,6 +229,7 @@ Where a.PropertyAddress is null
 
 
 ***Extracting Address from PropertyAddress***
+
 The PropertyAddress table originally contains the full address including the street, city, and potentially other details.
 
 |   PropertyAddress (Original)       |    
