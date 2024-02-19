@@ -1,7 +1,7 @@
 PROJECT SUMMARY: Data Cleaning for Nashville Real Estate Company
 
-As an data analyst at Nashville Real Estate Company, I was tasked with cleaning and preparing data using SQL to enhance the accuracy and reliability of our analytical processes. 
-The projec involved the following key steps:
+As a data analyst at Nashville Real Estate Company, I was tasked with cleaning and preparing data using SQL to enhance the accuracy and reliability of our analytical processes. 
+The project involved the following key steps:
 
 Data Assessment: I conducted a thorough assessment of the existing datasets to identify inconsistencies, missing values, and anomalies that could impact data integrity.
 
@@ -20,31 +20,31 @@ DATA EXPLORATION
 Analyzing Columns
 Here are the columns present in the Nashville Housing dataset along with their descriptions:
 
-UniqueID: A unique identifier for each record.
-ParcelID: Identification number for the parcel of land.
-LandUse: The designated use of the land (e.g., residential, commercial, industrial).
-PropertyAddress: The address of the property.
-SaleDate: The date when the property was sold.
-SalePrice: The price at which the property was sold.
-LegalReference: Legal reference associated with the property sale.
-SoldAsVacant: Indicator of whether the property was sold as vacant (yes/no).
-OwnerName: Name of the property owner.
-OwnerAddress: Address of the property owner.
-Acreage: The size of the land in acres.
-TaxDistrict: Tax district associated with the property.
-LandValue: Value of the land.
-BuildingValue: Value of the building on the property.
-TotalValue: Total assessed value of the property.
-YearBuilt: The year the building was constructed.
-Bedrooms: Number of bedrooms in the property.
-FullBath: Number of full bathrooms in the property.
-HalfBath: Number of half bathrooms in the property.
-SaleDateConverted: Sale date converted into a standardized format.
-SplitAddress: Breakdown of the property address.
-OwnerAdres: Address of the property owner.
-OwnerCity: City of the property owner.
+| Column Name      | Description                                                              |
+|------------------|--------------------------------------------------------------------------|
+| UniqueID         | A unique identifier for each record.                                     |
+| ParcelID         | Identification number for the parcel of land.                            |
+| LandUse          | The designated use of the land (e.g., residential, commercial, industrial).|
+| PropertyAddress  | The address of the property.                                             |
+| SaleDate         | The date when the property was sold.                                     |
+| SalePrice        | The price at which the property was sold.                                |
+| LegalReference   | Legal reference associated with the property sale.                        |
+| SoldAsVacant     | Indicator of whether the property was sold as vacant (yes/no).           |
+| OwnerName        | Name of the property owner.                                              |
+| OwnerAddress     | Address of the property owner.                                           |
+| Acreage          | The size of the land in acres.                                           |
+| TaxDistrict      | Tax district associated with the property.                                |
+| LandValue        | Value of the land.                                                       |
+| BuildingValue    | Value of the building on the property.                                    |
+| TotalValue       | Total assessed value of the property.                                    |
+| YearBuilt        | The year the building was constructed.                                   |
+| Bedrooms         | Number of bedrooms in the property.                                      |
+| FullBath         | Number of full bathrooms in the property.                                 |
+| HalfBath         | Number of half bathrooms in the property.                                 |
 
-There are a total of 23 columns in the Nashville Housing dataset.
+
+
+There are a total of 19 columns in the Nashville Housing dataset.
 
 Analyzing Rows
 Using the Unique ID as our primary key, we are going to check the total data that we will be working with.
@@ -91,6 +91,7 @@ The following table represents the count of duplicates found in the dataset usin
 
 
 DATA TRANSFORMATION: 
+
 SaleDateConverted
 
 The following table represents the original SaleDate data along with the transformed SaleDateConverted data:
@@ -105,15 +106,12 @@ The following table represents the original SaleDate data along with the transfo
 
 Explanation:
 
-The SaleDate data was originally stored as a datetime format, including both date and time information. However, we only required the date part for analysis.
+The SaleDate data was originally stored in a datetime format, including both date and time information. However, we only required the date part for analysis.
 To achieve this, we used the CONVERT function to extract only the date part of the SaleDate data, resulting in the SaleDateConverted column with date values.
 
+Populating the PropertyAddress:
 
-Missing PropertyAddress Data Analysis and Solution
-
-The following table represents the missing PropertyAddress data along with the proposed solution:
-
-### ParcelID and PropertyAddress Data
+From our data, we observed 35 rows with missing values in the PropertyAddress column.
 
 The following table displays the ParcelID and corresponding PropertyAddress data:
 
@@ -130,9 +128,6 @@ The following table displays the ParcelID and corresponding PropertyAddress data
 | 026 06 0A 038.00 | 109  CANTON CT, GOODLETTSVILLE |
 | 033 06 0 041.00 | 1129  CAMPBELL RD, GOODLETTSVILLE |
 
-Analysis:
-
-From our data, we observed 35 rows with missing values in the PropertyAddress column.
 
 Proposed Solution:
 
@@ -171,8 +166,34 @@ the start and end positions to capture only the street address part.
 | 1808 FOX CHASE DR, GOODLETTSVILLE | 1808 FOX CHASE DR                 |
 | 1832 FOX CHASE DR, GOODLETTSVILLE | 1832 FOX CHASE DR                 |
 | 1864 FOX CHASE DR, GOODLETTSVILLE | 1864 FOX CHASE DR                 |
+Extracting Address and City from OwnerAddress:
+
+Similar to the PropertyAddress column, our OwnerAddress column contains additional details such as the city and state. However, for our analysis, we are only interested in extracting the address and the city.
+
+|   OwnerAddress (Original)            |    OwnerAddress (Extracted)   |
+|--------------------------------------|-------------------------------|
+| 1802 STEWART PL, NASHVILLE, TN      | 1802 STEWART PL, NASHVILLE   |
+| 2761 ROSEDALE PL, NASHVILLE, TN     | 2761 ROSEDALE PL, NASHVILLE  |
+| 224 PEACHTREE ST, NASHVILLE, TN     | 224 PEACHTREE ST, NASHVILLE   |
+| 316 LUTIE ST, NASHVILLE, TN         | 316 LUTIE ST, NASHVILLE       |
 
 
+Similar to the PropertyAddress column, our OwnerAddress column contains additional details such as the city and state. However, for our analysis, we are only interested in extracting the address and the city.
+
+To achieve this, we used the PARSENAME function. In this case, we used PARSENAME to extract the address and city portions from the original OwnerAddress values.
+
+Populating Y with Yes and N with No:
+
+The SoldAsVacant column contains four distinct entries: N, Yes, Y, and No. However, for consistency and clarity, we aim to standardize the values by replacing N with No and Y with Yes.
+
+|   SoldAsVacant (Original)   |    SoldAsVacant (Transformed)   |
+|------------------------------|---------------------------------|
+| N                            | No                              |
+| Yes                          | Yes                             |
+| Y                            | Yes                             |
+| No                           | No                              |
+
+To achieve this, we used a CASE statement in our SQL query. The CASE statement evaluates each row's SoldAsVacant value and assigns the corresponding transformed value based on the conditions specified. In this case, N is mapped to No, Y and Yes are both mapped to Yes, and No remains unchanged.
 
 
 
