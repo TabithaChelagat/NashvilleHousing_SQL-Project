@@ -3,13 +3,13 @@
 As a data analyst at Nashville Real Estate Company, I was tasked with cleaning and preparing data using SQL to enhance the accuracy and reliability of our analytical processes. 
 The project involved the following key steps:
 
-***Data Assessment***: I conducted a thorough assessment of the existing datasets to identify inconsistencies, missing values, and anomalies that could impact data integrity.
+*Data Assessment*: I conducted a thorough assessment of the existing datasets to identify inconsistencies, missing values, and anomalies that could impact data integrity.
 
-***Data Cleaning***: Utilizing SQL, I implemented cleaning procedures to address identified issues such as standardizing formats, removing duplicates, filling in missing values, and correcting errors.
+*Data Cleaning*: Utilizing SQL, I implemented cleaning procedures to address identified issues such as standardizing formats, removing duplicates, filling in missing values, and correcting errors.
 
-***Normalization***: I ensured that the data was normalized to eliminate redundancy and improve efficiency in storage and processing.
+*Normalization*: I ensured that the data was normalized to eliminate redundancy and improve efficiency in storage and processing.
 
-***Documentation***: Throughout the process, I maintained detailed documentation of the cleaning procedures applied, ensuring transparency and reproducibility.
+*Documentation*: Throughout the process, I maintained detailed documentation of the cleaning procedures applied, ensuring transparency and reproducibility.
 
 
 **DATA SOURCE**
