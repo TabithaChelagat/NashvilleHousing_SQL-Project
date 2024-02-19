@@ -101,6 +101,9 @@ The following table represents the count of duplicates found in the dataset usin
 
 ***Date extraction***
 
+The SaleDate data was originally stored in a DateTime format, including both date and time information. However, we only required the date part for analysis.
+To achieve this, we used the CONVERT function to extract only the date part of the SaleDate data, resulting in the SaleDateConverted column with date values.
+
 The following table represents the original SaleDate data along with the transformed SaleDateConverted data:
 
 |   SaleDate (Original)       | SaleDateConverted (Transformed) |
@@ -111,10 +114,6 @@ The following table represents the original SaleDate data along with the transfo
 | 2013-01-02 00:00:00.000     | 2013-01-02                       |
 | 2013-01-02 00:00:00.000     | 2013-01-02                       |
 
-Explanation:
-
-The SaleDate data was originally stored in a datetime format, including both date and time information. However, we only required the date part for analysis.
-To achieve this, we used the CONVERT function to extract only the date part of the SaleDate data, resulting in the SaleDateConverted column with date values.
 
 
 ***Populating the NULLS in the PropertyAddress column***
