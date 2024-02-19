@@ -1,30 +1,33 @@
-PROJECT SUMMARY: Data Cleaning for Nashville Real Estate Company
+**PROJECT SUMMARY**
 
 As a data analyst at Nashville Real Estate Company, I was tasked with cleaning and preparing data using SQL to enhance the accuracy and reliability of our analytical processes. 
 The project involved the following key steps:
 
-Data Assessment: I conducted a thorough assessment of the existing datasets to identify inconsistencies, missing values, and anomalies that could impact data integrity.
+***Data Assessment***: I conducted a thorough assessment of the existing datasets to identify inconsistencies, missing values, and anomalies that could impact data integrity.
 
-Data Cleaning: Utilizing SQL, I implemented cleaning procedures to address identified issues such as standardizing formats, removing duplicates, filling in missing values, and correcting errors.
+***Data Cleaning***: Utilizing SQL, I implemented cleaning procedures to address identified issues such as standardizing formats, removing duplicates, filling in missing values, and correcting errors.
 
-Normalization: I ensured that the data was normalized to eliminate redundancy and improve efficiency in storage and processing.
+***Normalization***: I ensured that the data was normalized to eliminate redundancy and improve efficiency in storage and processing.
 
-Documentation: Throughout the process, I maintained detailed documentation of the cleaning procedures applied, ensuring transparency and reproducibility.
+***Documentation***: Throughout the process, I maintained detailed documentation of the cleaning procedures applied, ensuring transparency and reproducibility.
 
-DATA SOURCE
+
+**DATA SOURCE**
 
 Link to data source: https://github.com/AlexTheAnalyst/PortfolioProjects/blob/main/Nashville%20Housing%20Data%20for%20Data%20Cleaning.xlsx.
 
-DATA EXPLORATION
 
-Analyzing Columns
+**DATA EXPLORATION**
+
+***Analyzing Columns***
+
 Here are the columns present in the Nashville Housing dataset along with their descriptions:
 
 | Column Name      | Description                                                              |
 |------------------|--------------------------------------------------------------------------|
 | UniqueID         | A unique identifier for each record.                                     |
 | ParcelID         | Identification number for the parcel of land.                            |
-| LandUse          | The designated use of the land (e.g., residential, commercial, industrial).|
+| LandUse          | The designated use of the land.
 | PropertyAddress  | The address of the property.                                             |
 | SaleDate         | The date when the property was sold.                                     |
 | SalePrice        | The price at which the property was sold.                                |
@@ -46,7 +49,9 @@ Here are the columns present in the Nashville Housing dataset along with their d
 
 There are a total of 19 columns in the Nashville Housing dataset.
 
-Analyzing Rows
+
+***Analyzing Rows***
+
 Using the Unique ID as our primary key, we are going to check the total data that we will be working with.
 
 | TotalData |
@@ -55,7 +60,8 @@ Using the Unique ID as our primary key, we are going to check the total data tha
 
 This table represents the total number of records (56,477) that we will be working on within our analysis.
 
-Checking for NULLS
+
+***Checking for NULLS***
 
 The following table represents the count of null values for each column in our dataset:
 
@@ -80,7 +86,8 @@ The following table represents the count of null values for each column in our d
 | FullBath        | 32202      |
 | HalfBath        | 32333      |
 
-Duplicates in Dataset
+
+***Duplicates in Dataset***
 
 The following table represents the count of duplicates found in the dataset using the UniqueID column:
 
@@ -90,9 +97,9 @@ The following table represents the count of duplicates found in the dataset usin
 
 
 
-DATA TRANSFORMATION: 
+**DATA TRANSFORMATION** 
 
-SaleDateConverted
+***Date extraction***
 
 The following table represents the original SaleDate data along with the transformed SaleDateConverted data:
 
@@ -109,7 +116,8 @@ Explanation:
 The SaleDate data was originally stored in a datetime format, including both date and time information. However, we only required the date part for analysis.
 To achieve this, we used the CONVERT function to extract only the date part of the SaleDate data, resulting in the SaleDateConverted column with date values.
 
-Populating the PropertyAddress:
+
+***Populating the NULLS in the PropertyAddress column***
 
 From our data, we observed 35 rows with missing values in the PropertyAddress column.
 
@@ -146,10 +154,10 @@ This approach ensures consistency in the PropertyAddress data and fills in missi
 | 026 06 0A 038.00 | NULL                      | 109  CANTON CT, GOODLETTSVILLE |
 | 033 06 0 041.00 | NULL                      | 1129  CAMPBELL RD, GOODLETTSVILLE |
 
-The NULL values in the PropertyAddress column were filled using the ISNULL function. This function allows us to replace NULL values with specified values, in this case, 
+The NULL values in the PropertyAddress column were filled using the ISNULL function by joining the table to itself. This function allows us to replace NULL values with specified values, in this case, 
 the existing PropertyAddress values were used to fill in the NULL values.
 
-Extracting Address from PropertyAddress:
+***Extracting Address from PropertyAddress***
 
 |   PropertyAddress (Original)       |    
 |-----------------------------------|
@@ -166,7 +174,9 @@ the start and end positions to capture only the street address part.
 | 1808 FOX CHASE DR, GOODLETTSVILLE | 1808 FOX CHASE DR                 |
 | 1832 FOX CHASE DR, GOODLETTSVILLE | 1832 FOX CHASE DR                 |
 | 1864 FOX CHASE DR, GOODLETTSVILLE | 1864 FOX CHASE DR                 |
-Extracting Address and City from OwnerAddress:
+
+
+***Extracting Address and City from OwnerAddress***
 
 Similar to the PropertyAddress column, our OwnerAddress column contains additional details such as the city and state. However, for our analysis, we are only interested in extracting the address and the city.
 
@@ -178,11 +188,9 @@ Similar to the PropertyAddress column, our OwnerAddress column contains addition
 | 316 LUTIE ST, NASHVILLE, TN         | 316 LUTIE ST, NASHVILLE       |
 
 
-Similar to the PropertyAddress column, our OwnerAddress column contains additional details such as the city and state. However, for our analysis, we are only interested in extracting the address and the city.
+To achieve this, we used the PARSENAME function to extract the address and city portions from the original OwnerAddress values.
 
-To achieve this, we used the PARSENAME function. In this case, we used PARSENAME to extract the address and city portions from the original OwnerAddress values.
-
-Populating Y with Yes and N with No:
+***Populating Y with Yes and N with No***
 
 The SoldAsVacant column contains four distinct entries: N, Yes, Y, and No. However, for consistency and clarity, we aim to standardize the values by replacing N with No and Y with Yes.
 
