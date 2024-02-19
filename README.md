@@ -103,7 +103,6 @@ The following table represents the count of duplicates found in the dataset usin
 
 The SaleDate data was originally stored in a DateTime format, including both date and time information. However, we only required the date part for analysis.
 To achieve this, we used the CONVERT function to extract only the date part of the SaleDate data, resulting in the SaleDateConverted column with date values.
-
 The following table represents the original SaleDate data along with the transformed SaleDateConverted data:
 
 |   SaleDate (Original)       | SaleDateConverted (Transformed) |
@@ -201,6 +200,28 @@ The SoldAsVacant column contains four distinct entries: N, Yes, Y, and No. Howev
 | No                           | No                              |
 
 To achieve this, we used a CASE statement in our SQL query. The CASE statement evaluates each row's SoldAsVacant value and assigns the corresponding transformed value based on the conditions specified. In this case, N is mapped to No, Y and Yes are both mapped to Yes, and No remains unchanged.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
