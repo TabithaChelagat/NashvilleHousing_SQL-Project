@@ -3,13 +3,13 @@
 As a data analyst at Nashville Real Estate Company, I was tasked with cleaning and preparing data using SQL to enhance the accuracy and reliability of our analytical processes. 
 The project involved the following key steps:
 
-*Data Assessment*: I conducted a thorough assessment of the existing datasets to identify inconsistencies, missing values, and anomalies that could impact data integrity.
+- *Data Assessment*: I conducted a thorough assessment of the existing datasets to identify inconsistencies, missing values, and anomalies that could impact data integrity.
 
-*Data Cleaning*: Utilizing SQL, I implemented cleaning procedures to address identified issues such as standardizing formats, removing duplicates, filling in missing values, and correcting errors.
+- *Data Cleaning*: Utilizing SQL, I implemented cleaning procedures to address identified issues such as standardizing formats, removing duplicates, filling in missing values, and correcting errors.
 
-*Normalization*: I ensured that the data was normalized to eliminate redundancy and improve efficiency in storage and processing.
+- *Normalization*: I ensured that the data was normalized to eliminate redundancy and improve efficiency in storage and processing.
 
-*Documentation*: Throughout the process, I maintained detailed documentation of the cleaning procedures applied, ensuring transparency and reproducibility.
+- *Documentation*: Throughout the process, I maintained detailed documentation of the cleaning procedures applied, ensuring transparency and reproducibility.
 
 
 **DATA CLEANING: From Chaos to Clarity**
@@ -364,7 +364,9 @@ After completing the data cleaning and transformation process, I have achieved a
 
 5. ***Documentation:*** Detailed documentation was maintained throughout the process to provide transparency and facilitate reproducibility. This documentation includes explanations of the techniques used, the rationale behind decisions, and any assumptions made during the cleaning and transformation process.
 
-In conclusion, the data cleaning and transformation process has resulted in a refined dataset that is primed for further analysis and exploration. By addressing inconsistencies, standardizing formats, and extracting relevant information, I have enhanced the dataset's quality and usability, laying a solid foundation for deriving valuable insights and making informed decisions.
+In conclusion, the data cleaning and transformation process has resulted in a refined dataset that is primed for further analysis and exploration. 
+
+By addressing inconsistencies, standardizing formats, and extracting relevant information, I have enhanced the dataset's quality and usability, laying a solid foundation for deriving valuable insights and making informed decisions.
 
 
 
