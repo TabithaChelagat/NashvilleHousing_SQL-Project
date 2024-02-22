@@ -14,7 +14,7 @@ The project involved the following key steps:
 
 **DATA CLEANING: From Chaos to Clarity**
 
-Before diving into the analysis, I cleaned and formatted the raw data using SQL. This involved ``standardizing date formats``, ``populating missing property addresses``, and ``splitting address components into separate columns`` for better granularity. Additionally, I transformed “Y” and “N” values into “Yes” and “No” for readability. Through these data-cleaning steps, I ensured the accuracy and consistency of my dataset for meaningful analysis.
+Before diving into the analysis, I cleaned and formatted the raw data using SQL. This involved ``standardizing date formats``, ``populating missing property addresses``, and ``splitting address components into separate columns`` for better granularity. Additionally, ``I transformed “Y” and “N” values into “Yes” and “No”`` for readability. Through these data-cleaning steps, I ensured the accuracy and consistency of my dataset for meaningful analysis.
 
 
 **DATA SOURCE**
@@ -49,12 +49,12 @@ Link to data source: https://github.com/AlexTheAnalyst/PortfolioProjects/blob/ma
 | HalfBath         | Number of half bathrooms in the property.                                 |
 
 
-There are a total of 19 columns in the Nashville Housing dataset.
+There are a total of ``19 columns`` in the Nashville Housing dataset.
 
 
 - ***Analyzing Rows***
 
-Using the ``Unique ID`` as my primary key, I am going to check the total data that I will be working with.
+Using the ``Unique ID`` as my primary key, I checked the total data present in the dataset.
 
 ```
 Select COUNT([UniqueID ]) AS TotalData
@@ -91,7 +91,7 @@ COUNT(*)-COUNT(HalfBath) as HalfBath
 From ['NashvilleHousing']
 ```
 
-- ***Checking for nulls**
+- ***Checking for nulls***
   
 The following table represents the count of null values for each column in my dataset:
 
@@ -164,7 +164,7 @@ UPDATE ['NashvilleHousing']
 SET SaleDateConverted = CONVERT(Date, SaleDate)
 ```
 
-***2. Populating the nULLS in the PropertyAddress column***
+***2. Populating the 	NULLS in the PropertyAddress column***
 
 From the data, I observed ``35 rows`` with missing values in the ``PropertyAddress`` column.
 
