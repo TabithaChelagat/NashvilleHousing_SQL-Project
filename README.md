@@ -255,7 +255,7 @@ This function allows us to retrieve a specified part of a string. In this case, 
 | 1832 FOX CHASE DR, GOODLETTSVILLE | 1832 FOX CHASE DR                 |
 | 1864 FOX CHASE DR, GOODLETTSVILLE | 1864 FOX CHASE DR                 |
 
-A new column called ``SplitAddress`` was added to our dataset and the table was updated,
+A new column called ``SplitAddress`` was added to the dataset and the table was updated,
 
 ```
 ALTER TABLE [dbo].['NashvilleHousing']
@@ -267,7 +267,7 @@ SET SplitAddress = SUBSTRING(PropertyAddress, 1, CHARINDEX(',', PropertyAddress)
 
 ***4. Extracting address and city from OwnerAddress***
 
-Similar to the PropertyAddress column, our OwnerAddress column contains additional details such as the city and state. However, for our analysis, we are only interested in extracting the address and the city.
+Similar to the PropertyAddress column, our OwnerAddress column contains additional details such as the city and state. However, for the analysis, I am only interested in extracting the address and the city.
 
 |   OwnerAddress (Original)            |    OwnerAddress (Extracted)   |
 |--------------------------------------|-------------------------------|
