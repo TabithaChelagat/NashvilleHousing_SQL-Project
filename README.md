@@ -24,9 +24,7 @@ Link to data source: https://github.com/AlexTheAnalyst/PortfolioProjects/blob/ma
 
 **DATA EXPLORATION**
 
-***Exploratory Data Analysis (EDA) Queries:***
-My EDA journey begins with extracting the refined Nashville Housing data using SQL queries. Here are the columns present in the Nashville Housing dataset along with their descriptions:
-
+- ***Columns***
 
 | Column Name      | Description                                                              |
 |------------------|--------------------------------------------------------------------------|
@@ -54,9 +52,9 @@ My EDA journey begins with extracting the refined Nashville Housing data using S
 There are a total of 19 columns in the Nashville Housing dataset.
 
 
-***Analyzing Rows***
+- ***Analyzing Rows***
 
-Using the Unique ID as my primary key, I am going to check the total data that I will be working with.
+Using the ``Unique ID`` as my primary key, I am going to check the total data that I will be working with.
 
 ```
 Select COUNT([UniqueID ]) AS TotalData
@@ -66,10 +64,10 @@ From ['NashvilleHousing']
 |-----------|
 |   56477   |
 
-This table represents the total number of records (56,477) in the dataset.
+This table represents the total number of records ``56,477`` in the dataset.
 
 
-***Checking for NULLS***
+- ***Checking for NULLS***
 
 ```
 Select COUNT(*)-COUNT([UniqueID ]) as UniqueID, 
@@ -93,6 +91,8 @@ COUNT(*)-COUNT(HalfBath) as HalfBath
 From ['NashvilleHousing']
 ```
 
+- ***Checking for nulls**
+  
 The following table represents the count of null values for each column in my dataset:
 
 | Column Name     | Null Count |
@@ -117,7 +117,7 @@ The following table represents the count of null values for each column in my da
 | HalfBath        | 32333      |
 
 
-***Duplicates in Dataset***
+- ***Checking for duplicates***
 
 ```
 Select COUNT([UniqueID ])-COUNT(DISTINCT [UniqueID ]) as Duplicates
@@ -134,9 +134,9 @@ The following table represents the count of duplicates found in the dataset usin
 
 **DATA TRANSFORMATION** 
 
-***Date extraction***
+***1. Date extraction***
 
-The SaleDate data was originally stored in a DateTime format, including both date and time information. However, I will only require the date part for analysis. To achieve this, I used the CONVERT function to extract only the date part of the SaleDate data, resulting in the SaleDateConverted column with date values.
+The ``SaleDate`` data was originally stored in a DateTime format, including both date and time information. However, I will only require the date part for analysis. To achieve this, I used the ``CONVERT`` function to extract only the date part of the SaleDate data, resulting in the ``SaleDateConverted`` column with date values.
 
 ```
 Select SaleDate, CONVERT(Date, SaleDate) as SaleDateConverted
@@ -164,9 +164,9 @@ UPDATE ['NashvilleHousing']
 SET SaleDateConverted = CONVERT(Date, SaleDate)
 ```
 
-***Populating the NULLS in the PropertyAddress column***
+***2. Populating the nULLS in the PropertyAddress column***
 
-From the data, I observed 35 rows with missing values in the PropertyAddress column.
+From the data, I observed ``35 rows`` with missing values in the ``PropertyAddress`` column.
 
 ```
 Select ParcelID, PropertyAddress, UniqueID
@@ -213,7 +213,7 @@ This approach ensures consistency in the PropertyAddress data and fills in missi
 | 026 06 0A 038.00 | NULL                      | 109  CANTON CT, GOODLETTSVILLE |
 | 033 06 0 041.00 | NULL                      | 1129  CAMPBELL RD, GOODLETTSVILLE |
 
-The NULL values in the PropertyAddress column were filled using the ISNULL function by joining the table to itself. This function allows us to replace NULL values with specified values, in this case, the existing PropertyAddress values were used to fill in the NULL values.
+The NULL values in the PropertyAddress column were filled using the ``ISNULL`` function by joining the table to itself. This function allows us to replace NULL values with specified values, in this case, the existing PropertyAddress values were used to fill in the NULL values.
 
 After populating the NULLs with their respective PropertyAddress, the table was altered and updated.
 
@@ -228,9 +228,9 @@ Where a.PropertyAddress is null
 ```
 
 
-***Extracting Address from PropertyAddress***
+***3. Extracting Dddress from PropertyAddress***
 
-The PropertyAddress table originally contains the full address including the street, city, and potentially other details.
+The ``PropertyAddress`` table originally contains the full address including the street, city, and potentially other details.
 
 |   PropertyAddress (Original)       |    
 |-----------------------------------|
@@ -238,7 +238,7 @@ The PropertyAddress table originally contains the full address including the str
 | 1832 FOX CHASE DR, GOODLETTSVILLE | 
 | 1864 FOX CHASE DR, GOODLETTSVILLE | 
 
-To extract only the property address, I used the SUBSTRING function.
+To extract only the property address, I used the ``SUBSTRING`` and ``CHARINDEX`` functions.
 
 ```
 Select
@@ -249,13 +249,13 @@ From ['NashvilleHousing']
 
 This function allows us to retrieve a specified part of a string. In this case, I extracted the property address portion by specifying the start and end positions to capture only the street address part.
 
-|   PropertyAddress (Original)       |    PropertyAddress (Extracted)   |
+|   PropertyAddress (Original)       |    	SplitAddress (Extracted)   |
 |-----------------------------------|-----------------------------------|
 | 1808 FOX CHASE DR, GOODLETTSVILLE | 1808 FOX CHASE DR                 |
 | 1832 FOX CHASE DR, GOODLETTSVILLE | 1832 FOX CHASE DR                 |
 | 1864 FOX CHASE DR, GOODLETTSVILLE | 1864 FOX CHASE DR                 |
 
-A new column called SplitAddress was added to our dataset and the table was updated,
+A new column called ``SplitAddress`` was added to our dataset and the table was updated,
 
 ```
 ALTER TABLE [dbo].['NashvilleHousing']
@@ -265,7 +265,7 @@ UPDATE [dbo].['NashvilleHousing']
 SET SplitAddress = SUBSTRING(PropertyAddress, 1, CHARINDEX(',', PropertyAddress)-1)
  ```
 
-***Extracting Address and City from OwnerAddress***
+***4. Extracting sddress and city from OwnerAddress***
 
 Similar to the PropertyAddress column, our OwnerAddress column contains additional details such as the city and state. However, for our analysis, we are only interested in extracting the address and the city.
 
