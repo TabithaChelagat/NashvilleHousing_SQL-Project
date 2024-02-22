@@ -14,7 +14,7 @@ The project involved the following key steps:
 
 **DATA CLEANING: From Chaos to Clarity**
 
-Before diving into the analysis, I cleaned and formatted the raw data using SQL. This involved standardizing date formats, populating missing property addresses, and splitting address components into separate columns for better granularity. Additionally, I transformed “Y” and “N” values into “Yes” and “No” for readability. Through these data-cleaning steps, I ensured the accuracy and consistency of my dataset for meaningful analysis.
+Before diving into the analysis, I cleaned and formatted the raw data using SQL. This involved ``standardizing date formats``, ``populating missing property addresses``, and ``splitting address components into separate columns`` for better granularity. Additionally, I transformed “Y” and “N” values into “Yes” and “No” for readability. Through these data-cleaning steps, I ensured the accuracy and consistency of my dataset for meaningful analysis.
 
 
 **DATA SOURCE**
@@ -265,7 +265,7 @@ UPDATE [dbo].['NashvilleHousing']
 SET SplitAddress = SUBSTRING(PropertyAddress, 1, CHARINDEX(',', PropertyAddress)-1)
  ```
 
-***4. Extracting sddress and city from OwnerAddress***
+***4. Extracting address and city from OwnerAddress***
 
 Similar to the PropertyAddress column, our OwnerAddress column contains additional details such as the city and state. However, for our analysis, we are only interested in extracting the address and the city.
 
@@ -277,7 +277,7 @@ Similar to the PropertyAddress column, our OwnerAddress column contains addition
 | 316 LUTIE ST, NASHVILLE, TN         | 316 LUTIE ST, NASHVILLE       |
 
 
-To achieve this, I used the PARSENAME function to extract the address and city portions from the original OwnerAddress values.
+To achieve this, I used the ``PARSENAME`` function to extract the address and city portions from the original OwnerAddress values.
 
 ```
 --OwnerAdres
@@ -293,7 +293,7 @@ PARSENAME(REPLACE(OwnerAddress, ',', '.'), 2) as OwnerCity
 From ['NashvilleHousing']
 ```
 
-New two columns, namely, OwnerAdres and OwnerCity were created and added to the data set.
+New two columns, namely, ``OwnerAdres`` and ``OwnerCity`` were created and added to the data set.
 
 ```
 --Adding OwnerAdres to our table
@@ -315,9 +315,9 @@ SET OwnerCity = PARSENAME(REPLACE(OwnerAddress, ',', '.'), 2)
 ```
 
 
-***Populating Y with Yes and N with No***
+***5. Populating Y with Yes and N with No***
 
-The SoldAsVacant column contains four distinct entries: N, Yes, Y, and No. However, for consistency and clarity, I aim to standardize the values by replacing N with No and Y with Yes.
+The ``SoldAsVacant`` column contains four distinct entries: N, Yes, Y, and No. However, for consistency and clarity, I aim to standardize the values by replacing N with No and Y with Yes.
 
 ```
 Select
@@ -328,7 +328,7 @@ CASE WHEN SoldAsVacant = 'Y' THEN 'YES'
 From ['NashvilleHousing']
 ```
 
-To achieve this, I used a CASE statement in our SQL query. The CASE statement evaluates each row's SoldAsVacant value and assigns the corresponding transformed value based on the conditions specified. In this case, N is mapped to No, Y and Yes are both mapped to Yes, and No remains unchanged.
+To achieve this, I used a ``CASE statement`` in our SQL query. The CASE statement evaluates each row's SoldAsVacant value and assigns the corresponding transformed value based on the conditions specified. In this case, N is mapped to No, Y and Yes are both mapped to Yes, and No remains unchanged.
 
 
 |   SoldAsVacant (Original)   |    SoldAsVacant (Transformed)   |
@@ -339,7 +339,7 @@ To achieve this, I used a CASE statement in our SQL query. The CASE statement ev
 | No                           | No                              |
 
 
-The dataset was altered and updated to contain the values of the SoldAsVacant that had been maniulated.
+The dataset was altered and updated to contain the values of the SoldAsVacant that had been manipulated.
 
 ```
 UPDATE ['NashvilleHousing']
@@ -352,7 +352,7 @@ SET SoldAsVacant = CASE WHEN SoldAsVacant = 'Y' THEN 'YES'
 
 **CONCLUSION**
 
-After completing the data cleaning and transformation process, I have achieved a significantly improved dataset that is well-prepared for analysis and utilization. Several key steps were undertaken to ensure the quality and reliability of the data:
+After completing the data cleaning and transformation process, I achieved a significantly improved dataset that is well-prepared for analysis and utilization. Several key steps were undertaken to ensure the quality and reliability of the data:
 
 1. ***Data Cleaning:*** I identified and addressed various data inconsistencies, such as missing values, duplicates, and incorrect formats. By employing techniques like using ISNULL, CASE, and PARSENAME functions, I efficiently filled in missing values, standardized entries, and extracted relevant information.
 
